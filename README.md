@@ -1,2 +1,2 @@
-# test-game
-this is a test repository for the Game Hub project
+# BITS-and-Pieces2
+Bits and Pieces2, Mystery Maths, is an educational mathematics game for children, with the aim of being a diverse and enjoyable experience for the user
