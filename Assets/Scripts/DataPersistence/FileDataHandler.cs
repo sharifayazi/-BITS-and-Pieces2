@@ -65,7 +65,7 @@ public class FileDataHandler
         }
     }
 
-    public Dictionary<string, GameData> LoadAllProfiles ()
+    public Dictionary<string, GameData> LoadAllProfiles()
     {
         Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();
 

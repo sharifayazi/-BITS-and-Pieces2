@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void OnNewGameClicked()
+    public void OnNewGameClicked()
     {
-        DataPersistenceManager.instance.NewGame();
+        DataPersistenceManager.Instance.NewGame();
 
         SceneManager.LoadSceneAsync("Sample Scene");
     }

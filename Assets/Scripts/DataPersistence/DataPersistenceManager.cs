@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    [Header("File Storage Config")]
+    [Header("Debugging")]
+    [SerializeField] private bool initializeDataIfNull = false;
 
+    [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
     private GameData gameData;
@@ -17,17 +19,17 @@ public class DataPersistenceManager : MonoBehaviour
     private FileDataHandler dataHandler;
     private string selectedProfileID = "test";
 
-    public static DataPersistenceManager instance { get; private set; }
+    public static DataPersistenceManager Instance { get; private set; }
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
-            Debug.LogError("More than one DPM in scene.");
+            Debug.LogError("More than one DPM in scene. Destroying old one to continue.");
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
@@ -57,6 +59,12 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
+    public void ChangeSelectedProfileID(string newProfileID)
+    {
+        this.selectedProfileID = newProfileID;
+        LoadGame();
+    }
+
     public void NewGame()
     {
         this.gameData = new GameData();
@@ -66,9 +74,14 @@ public class DataPersistenceManager : MonoBehaviour
     {
         this.gameData = dataHandler.Load(selectedProfileID);
 
+        if (this.gameData == null && initializeDataIfNull)
+        {
+            NewGame();
+        }
+
         if (this.gameData == null)
         {
-            Debug.Log("No data found, start new game necessary.");
+            Debug.Log("No data found. New game needs to be started before data can be loaded.");
             return;
         }
 
@@ -82,7 +95,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (this.gameData == null)
         {
-            Debug.LogWarning("No data was found, new game start necessary");
+            Debug.LogWarning("No data was found. New game needs to be started before data can be saved.");
             return;
         }
 
