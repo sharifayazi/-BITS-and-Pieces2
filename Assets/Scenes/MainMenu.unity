@@ -4024,7 +4024,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 664692842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d877aa1e38065c47a1b2c4d25d30fe3, type: 3}
+  m_Script: {fileID: 11500000, guid: e1a37dc457733804b8fda12eb5ccf0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   volumeTextValue: {fileID: 2007757731}
@@ -4032,7 +4032,7 @@ MonoBehaviour:
   defaultVolume: 1
   confirmationPrompt: {fileID: 718266018}
   _newGameLevel: Level1
-  noSavedGameDialogue: {fileID: 1543667608}
+  noSavedGameDialogue: {fileID: 1269327188}
 --- !u!4 &664692844
 Transform:
   m_ObjectHideFlags: 0
