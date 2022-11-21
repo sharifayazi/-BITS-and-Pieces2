@@ -3,17 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Background
+  - Player Ground
   - Water
   - UI
-  - Character
-  - 
-  - 
+  - Ground
+  - Wall
+  - Background
   - 
   - 
   - 
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1915202271
+    locked: 0
+  - name: Sprite Layer
+    uniqueID: 656010495
+    locked: 0
+  - name: PlayerGround
+    uniqueID: 245476465
+    locked: 0
+  - name: Foreground
+    uniqueID: 3920144117
     locked: 0

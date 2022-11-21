@@ -7,7 +7,7 @@ using TMPro;
 
 public class MenuController : MonoBehaviour
 {
-    [Header("Volume Setting")] 
+    [Header("Volume Setting")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private float defaultVolume = 1.0f;
@@ -18,7 +18,7 @@ public class MenuController : MonoBehaviour
     [Header("Levels To Load")] public string _newGameLevel;
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialogue = null;
-    
+
     public void NewGameDialogueYes()
     {
         SceneManager.LoadScene(_newGameLevel);
@@ -41,7 +41,7 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
-   public void SetVolume(float volume)
+    public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
         volumeTextValue.text = volume.ToString("0.0");
@@ -55,7 +55,7 @@ public class MenuController : MonoBehaviour
 
     public void ResetButton(string MenuType)
     {
-        if(MenuType == "Audio")
+        if (MenuType == "Audio")
         {
             AudioListener.volume = defaultVolume;
             volumeSlider.value = defaultVolume;
