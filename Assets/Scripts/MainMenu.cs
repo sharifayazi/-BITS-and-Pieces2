@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void OnNewGameClicked()
     {
-        DataPersistenceManager.Instance.NewGame();
-
-        SceneManager.LoadSceneAsync("Sample Scene");
+        DataPersistenceManager.Instance.NewGame();             
+               
     }
    
     public void OnLoadGameClicked()
+
     {
         Debug.Log("Load button clicked");
     }

@@ -17,7 +17,8 @@ public class DataPersistenceManager : MonoBehaviour
     private List<iDataPersistence> dataPersistenceObjects;
 
     private FileDataHandler dataHandler;
-    private string selectedProfileID = "test";
+
+    private string selectedProfileID = "";
 
     public static DataPersistenceManager Instance { get; private set; }
 
@@ -38,13 +39,13 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+       
     }
 
 
@@ -101,19 +102,15 @@ public class DataPersistenceManager : MonoBehaviour
 
         foreach (iDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref gameData);
+            dataPersistenceObj.SaveData(gameData);
         }
         dataHandler.Save(gameData, selectedProfileID);  
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
 
     private List<iDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<iDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>()
+        IEnumerable<iDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true)
             .OfType<iDataPersistence>();
 
         return new List<iDataPersistence>(dataPersistenceObjects);

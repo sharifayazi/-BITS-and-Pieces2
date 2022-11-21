@@ -23,10 +23,16 @@ public class SaveSlotMenu : MonoBehaviour
             DataPersistenceManager.Instance.NewGame();
         }
 
-        DataPersistenceManager.Instance.NewGame();
+        DataPersistenceManager.Instance.SaveGame();
               
     }
-    
+
+    private void Start()
+    {
+        ActivateMenu(true);
+    }
+  
+
     public void ActivateMenu(bool isLoadingGame)
     {
         this.isLoadingGame = isLoadingGame;
@@ -39,14 +45,7 @@ public class SaveSlotMenu : MonoBehaviour
             profilesGameData.TryGetValue(saveSlot.GetProfileID(), out profileData);
             saveSlot.SetData(profileData);
 
-            if (profileData == null && isLoadingGame)
-            {
-                saveSlot.SetInteractable(false);
-            }
-            else
-            {
-                saveSlot.SetInteractable(true);
-            }
+         
         }
     }
 }

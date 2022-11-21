@@ -12,9 +12,9 @@ public class SaveSlot : MonoBehaviour
 
     [Header("Content")]
 
-    [SerializeField] private GameObject noDataContent;
+    [SerializeField] private GameObject noData;
 
-    [SerializeField] private GameObject hasDataContent;
+    [SerializeField] private GameObject hasData;
 
     private Button saveSlotButton;
 
@@ -27,13 +27,13 @@ public class SaveSlot : MonoBehaviour
     {
         if (data == null)
         {
-            noDataContent.SetActive(true);
-            hasDataContent.SetActive(false);
+            noData.SetActive(true);
+            hasData.SetActive(false);
         }
         else
         {
-            noDataContent.SetActive(false);
-            hasDataContent.SetActive(true);
+            noData.SetActive(false);
+            hasData.SetActive(true);
         }
     }
 
