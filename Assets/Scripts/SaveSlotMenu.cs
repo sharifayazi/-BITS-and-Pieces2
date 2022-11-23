@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SaveSlotMenu : MonoBehaviour
 {
-    private SaveSlot[] saveSlots;
+    private SaveSlot[] saveSlot;
 
     private void Awake()
     {
-        saveSlots = this.GetComponentsInChildren<SaveSlot>();
+        saveSlot = this.GetComponentsInChildren<SaveSlot>();
     }
 
     public void OnSaveSlotClicked(SaveSlot saveSlot)
@@ -31,7 +31,7 @@ public class SaveSlotMenu : MonoBehaviour
         
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
 
-        foreach (SaveSlot saveSlot in saveSlots)
+        foreach (SaveSlot saveSlot in saveSlot)
         {
             GameData profileData = null;
             profilesGameData.TryGetValue(saveSlot.GetProfileID(), out profileData);

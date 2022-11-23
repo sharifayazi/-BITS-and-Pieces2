@@ -102,8 +102,5 @@ public class DataPersistenceManager : MonoBehaviour
         return dataHandler.LoadAllProfiles();
     }
 
-    //private void OnApplicationQuit()
-    //{
-      //  SaveGame();
-    //}
+    
 }
