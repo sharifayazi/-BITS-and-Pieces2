@@ -49,7 +49,7 @@ public class FileDataHandler
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
-            string dataToStore = JsonUtility.ToJson(data, true);
+            string dataToStore = JsonUtility.ToJson(data);
 
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
@@ -83,14 +83,9 @@ public class FileDataHandler
 
             GameData profileData = Load(profileID);
 
-            if (profileData != null)
-            {
-                profileDictionary.Add(profileID, profileData);
-            }
-            else
-            {
-                Debug.LogError("Error loading profile. ProfileID: " + profileID);
-            }
+            profileDictionary.Add(profileID, profileData);
+            
+         
         }
 
         return profileDictionary;

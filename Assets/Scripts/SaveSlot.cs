@@ -16,13 +16,6 @@ public class SaveSlot : MonoBehaviour
 
     [SerializeField] private GameObject hasData;
 
-    private Button saveSlotButton;
-
-    private void Awake()
-    {
-        saveSlotButton = this.GetComponent<Button>();
-    }
-
     public void SetData(GameData data)
     {
         if (data == null)
@@ -42,8 +35,5 @@ public class SaveSlot : MonoBehaviour
         return this.profileID;
     }
 
-    public void SetInteractable(bool interactable)
-    {
-        saveSlotButton.interactable = interactable;
-    }
+    
 }

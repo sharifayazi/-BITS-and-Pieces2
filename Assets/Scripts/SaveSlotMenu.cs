@@ -7,8 +7,6 @@ public class SaveSlotMenu : MonoBehaviour
 {
     private SaveSlot[] saveSlots;
 
-    private bool isLoadingGame = false;
-
     private void Awake()
     {
         saveSlots = this.GetComponentsInChildren<SaveSlot>();
@@ -18,25 +16,19 @@ public class SaveSlotMenu : MonoBehaviour
     {
         DataPersistenceManager.Instance.ChangeSelectedProfileID(saveSlot.GetProfileID());
 
-        if(!isLoadingGame)
-        {
-            DataPersistenceManager.Instance.NewGame();
-        }
-
         DataPersistenceManager.Instance.SaveGame();
               
     }
 
     private void Start()
     {
-        ActivateMenu(true);
+        ActivateMenu();
     }
   
 
-    public void ActivateMenu(bool isLoadingGame)
+    public void ActivateMenu()
     {
-        this.isLoadingGame = isLoadingGame;
-
+        
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
 
         foreach (SaveSlot saveSlot in saveSlots)
