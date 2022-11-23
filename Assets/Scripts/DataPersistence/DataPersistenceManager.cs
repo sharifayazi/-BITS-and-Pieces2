@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class DataPersistenceManager : MonoBehaviour
 {
-    [Header("Debugging")]
-    [SerializeField] private bool initializeDataIfNull = false;
-
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
@@ -26,7 +23,6 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("More than one DPM in scene. Destroying old one to continue.");
             Destroy(this.gameObject);
             return;
         }
@@ -66,19 +62,10 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    public void NewGame()
-    {
-        this.gameData = new GameData();
-    }
-
+   
     public void LoadGame()
     {
         this.gameData = dataHandler.Load(selectedProfileID);
-
-        if (this.gameData == null && initializeDataIfNull)
-        {
-            NewGame();
-        }
 
         if (this.gameData == null)
         {
@@ -94,15 +81,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
-        if (this.gameData == null)
-        {
-            Debug.LogWarning("No data was found. New game needs to be started before data can be saved.");
-            return;
-        }
-
         foreach (iDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(gameData);
+            dataPersistenceObj.SaveData( gameData);
         }
         dataHandler.Save(gameData, selectedProfileID);  
     }
@@ -120,4 +101,6 @@ public class DataPersistenceManager : MonoBehaviour
     {
         return dataHandler.LoadAllProfiles();
     }
+
+    
 }

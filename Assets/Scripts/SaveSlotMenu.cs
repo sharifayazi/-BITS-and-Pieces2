@@ -5,23 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SaveSlotMenu : MonoBehaviour
 {
-    private SaveSlot[] saveSlots;
-
-    private bool isLoadingGame = false;
+    private SaveSlot[] saveSlot;
 
     private void Awake()
     {
-        saveSlots = this.GetComponentsInChildren<SaveSlot>();
+        saveSlot = this.GetComponentsInChildren<SaveSlot>();
     }
 
     public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
         DataPersistenceManager.Instance.ChangeSelectedProfileID(saveSlot.GetProfileID());
-
-        if(!isLoadingGame)
-        {
-            DataPersistenceManager.Instance.NewGame();
-        }
 
         DataPersistenceManager.Instance.SaveGame();
               
@@ -29,17 +22,16 @@ public class SaveSlotMenu : MonoBehaviour
 
     private void Start()
     {
-        ActivateMenu(true);
+        ActivateMenu();
     }
   
 
-    public void ActivateMenu(bool isLoadingGame)
+    public void ActivateMenu()
     {
-        this.isLoadingGame = isLoadingGame;
-
+        
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
 
-        foreach (SaveSlot saveSlot in saveSlots)
+        foreach (SaveSlot saveSlot in saveSlot)
         {
             GameData profileData = null;
             profilesGameData.TryGetValue(saveSlot.GetProfileID(), out profileData);
