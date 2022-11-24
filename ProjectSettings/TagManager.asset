@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - InterObject
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - Wall
   - Background
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Sprite Layer
     uniqueID: 656010495
+    locked: 0
+  - name: Midground
+    uniqueID: 1499832799
     locked: 0
   - name: PlayerGround
     uniqueID: 245476465
