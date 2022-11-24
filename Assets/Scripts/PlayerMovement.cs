@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    public AudioSource aud;
 
     private void Awake()
     {
@@ -23,17 +25,17 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-
+       
         //Flip player when moving left-right
         if (horizontalInput > 0.01f)
-            transform.localScale = new Vector3(5, 5, 5);
+           transform.localScale = new Vector3(5, 5, 5);
         else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-5, 5, 5);
+           transform.localScale = new Vector3(-5, 5, 5);
 
         //Set animator parameters
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
-
+    
         //Wall jump logic
         if (wallJumpCooldown > 0.2f)
         {
@@ -54,10 +56,16 @@ public class PlayerMovement : MonoBehaviour
             wallJumpCooldown += Time.deltaTime;
     }
 
+    public void play_sound()
+    {
+        aud.Play();
+    }
+
      private void Jump()
     {
         if (isGrounded())
         {
+            jumpSoundEffect.Play();
             body.velocity = new Vector2(body.velocity.x, jumpPower);
             anim.SetTrigger("jump");
         }
@@ -65,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (horizontalInput == 0)
             {
+                jumpSoundEffect.Play();
                 body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 10, 0);
                 transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
